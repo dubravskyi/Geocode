@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="mapApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My project map</title>
+    
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFlV32wT8uyCYvh_dtkxzBvPziyaqT460&region=ua"></script>
+    <script src="script.js"></script>
+
+</head>
+<body ng-controller = "mapCtrl" >
+    <div class="container">
+
+        <div class="col-sm-10 col-sm-offset-1">
+            <h1>Дізнайся свої координати на карті</h1>
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <form id="search" name="search" novalidate ng-submit="sendRequest()" >
+                        <div class="input-group">
+                            <input name="serch-input" class="form-control" type="text" autofocus required placeholder="Введіть свою адресу" ng-model="address" > 
+                            <span class="input-group-btn"><button class="btn btn-primary" ng-disabled="search.$invalid" >Дізнатися</button></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+           <div class="alert alert-danger text-center" role="alert" ng-show="searchError">
+                <b>{{errorText}}</b>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>
+                        <b>Повна адреса: </b>{{formatedAddress}}
+                    </p>
+                    <p>
+                        <b>Широта: </b>{{location.lat}}
+                    </p>
+                    <p>
+                        <b>Довгота: </b>{{location.lng}}
+                    </p> 
+                </div>
+            </div>
+        </div> 
+
+    </div>  
+</body>
+</html>
+
